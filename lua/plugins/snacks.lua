@@ -4,7 +4,7 @@ return {
 	lazy = false,
 	opts = {
 		indent = { enabled = true },
-		picker = { enabled = true },
-		explorer = { enabled = true },
+		picker = { enabled = false },
+		explorer = { enabled = false },
 	},
 }
