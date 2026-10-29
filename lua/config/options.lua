@@ -15,3 +15,5 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.filetype.add({ extension = { asm = "nasm" } })
+
+vim.opt.fileencodings = { "utf-8", "cp1251", "koi8-r", "latin1" }
