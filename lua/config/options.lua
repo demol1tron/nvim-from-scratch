@@ -19,3 +19,6 @@ vim.opt.splitbelow = true
 
 vim.filetype.add({ extension = { asm = "nasm" } })
 vim.opt.fileencodings = { "utf-8", "cp1251", "koi8-r", "latin1" }
+
+vim.opt.cursorline = true
+vim.opt.relativenumber = true
