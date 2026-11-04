@@ -15,6 +15,9 @@ return {
 			"rust",
 			"python",
 			"javascript",
+			"markdown",
+			"markdown_inline",
+			"latex",
 		})
 	end,
 }
