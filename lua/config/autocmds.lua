@@ -7,13 +7,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("VimLeavePre", {
-  group = augroup,
-  callback = function()
-    vim.cmd("Neotree close")
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = augroup,
   callback = function()
@@ -25,11 +18,11 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup,
-  pattern = { "markdown", "text", "gitcommit" },
-  callback = function()
-    vim.opt_local.spell = true
-    vim.opt_local.spelllang = { "en", "ru" }
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = augroup,
+--   pattern = { "markdown", "text", "gitcommit" },
+--   callback = function()
+--     vim.opt_local.spell = true
+--     vim.opt_local.spelllang = { "en", "ru" }
+--   end,
+-- })

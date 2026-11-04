@@ -27,10 +27,39 @@ map("n", "<Tab>", "gt", { desc = "Next tab" })
 map("n", "<S-Tab>", "gT", { desc = "Prev tab" })
 map("n", "<leader>ct", "<cmd>tabclose<CR>", { desc = "Close tab" })
 map("n", "<leader>q", "<cmd>qall<CR>", { desc = "Quit" })
-map("n", "<C-h>", "<cmd>Alpha<CR>", { desc = "Dashboard" })
-map("n", "<C-e>", "<cmd>Neotree toggle<CR>", { desc = "Explorer" })
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
-map("n", "<C-q>", "<cmd>bdelete<CR>", { desc = "Close buffer" })
+map("n", "<C-h>", function()
+  Snacks.dashboard()
+end, { desc = "Dashboard" })
+map("n", "<C-q>", function()
+  Snacks.bufdelete()
+end, { desc = "Close buffer" })
+
+-- Explorer
+local function get_current_file_dir()
+  local filepath = vim.api.nvim_buf_get_name(0)
+  if filepath ~= "" and vim.bo.buftype == "" then
+    return vim.fs.dirname(filepath)
+  end
+  return vim.fn.getcwd()
+end
+
+map("n", "<C-e>", function()
+  Snacks.explorer({ cwd = get_current_file_dir() })
+end, { desc = "Toggle Explorer" })
+
+-- Terminal
+local function toggle_terminal()
+  for _, term in ipairs(Snacks.terminal.list()) do
+    if term:win_valid() then
+      term:hide()
+      return
+    end
+  end
+  Snacks.terminal.toggle(nil, { cwd = get_current_file_dir() })
+end
+
+map({ "n", "t" }, "<C-\\>", toggle_terminal, { desc = "Toggle Terminal" })
 
 -- Gitsigns
 map("n", "]c", function()
